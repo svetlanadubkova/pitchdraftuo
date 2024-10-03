@@ -95,12 +95,12 @@ body, html {
 }
 .chart-container {
   width: 100%;
-  height: 50vh;
+  height: 40vh;
   margin-top: 20px;
 }
 .image-placeholder {
   width: 100%;
-  height: 40vh;
+  height: 30vh;
   background-color: rgba(230, 166, 76, 0.2);
   display: flex;
   justify-content: center;
@@ -108,7 +108,33 @@ body, html {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-size: 2vw;
-  margin-top: 20px;
+  margin: 10px 0;
+}
+.split-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.split-content > div {
+  width: 48%;
+  margin-bottom: 20px;
+}
+.milestone {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.milestone-date {
+  font-size: 2vw;
+  font-weight: bold;
+  margin-right: 20px;
+  color: var(--accent-color);
+  width: 30%;
+}
+.milestone-content {
+  font-size: 1.5vw;
+  width: 70%;
 }
 </style>
 </head>
@@ -138,6 +164,7 @@ body, html {
   <div class="content">
     <p class="main-text">every year, brands waste <span class="highlight">$1.5 billion</span> on boring, forgettable events.</p>
     <p class="sub-text">we make sure your event investment creates lasting, unforgettable experiences.</p>
+    <div class="image-placeholder">Infographic: Wasted Event Budgets</div>
   </div>
   <div class="background-text">invest</div>
 </div>
@@ -146,14 +173,20 @@ body, html {
   <div class="content">
     <p class="main-text">hospitality isn't just service—it's connection.</p>
     <p class="sub-text">underage & overserved ensures every penny you spend turns into something memorable.</p>
+    <div class="image-placeholder">Event Photo: Guests Connecting</div>
   </div>
   <div class="background-text">connect</div>
 </div>
 
 <div class="slide">
-  <div class="content">
-    <p class="main-text">"those who dance are considered insane by those who cannot hear the music."</p>
-    <p class="sub-text">we hear the music. we invite your guests to feel it.</p>
+  <div class="content split-content">
+    <div>
+      <p class="main-text">"those who dance are considered insane by those who cannot hear the music."</p>
+      <p class="sub-text">we hear the music. we invite your guests to feel it.</p>
+    </div>
+    <div>
+      <p class="sub-text" id="litmus-text"></p>
+    </div>
   </div>
   <div class="background-text">dance</div>
 </div>
@@ -162,6 +195,7 @@ body, html {
   <div class="content">
     <p class="main-text">thoughtful, playful, elevated.</p>
     <p class="sub-text">for people who appreciate great hospitality without the stuffiness.</p>
+    <div class="image-placeholder">Event Photo: Playful Moment</div>
   </div>
   <div class="background-text">elevate</div>
 </div>
@@ -170,6 +204,7 @@ body, html {
   <div class="content">
     <p class="main-text">women-owned, immigrant-owned.</p>
     <p class="sub-text">russian, haitian, and proud native new yorkers.</p>
+    <div class="image-placeholder">Team Photo</div>
   </div>
   <div class="background-text">diversity</div>
 </div>
@@ -181,6 +216,7 @@ body, html {
     <div class="chart-container">
       <canvas id="reviewChart"></canvas>
     </div>
+    <div class="image-placeholder">Taskrabbit Reviews Screenshot</div>
   </div>
   <div class="background-text">excel</div>
 </div>
@@ -189,14 +225,19 @@ body, html {
   <div class="content">
     <p class="main-text">our network spans global.</p>
     <p class="sub-text">5 thoughtfully executed events, all 5-star reviews. proof of fun? we've got NFTs for that.</p>
-    <div class="image-placeholder">Malaysia Event Photos</div>
+    <div class="split-content">
+      <div class="image-placeholder">Malaysia Event Photo 1</div>
+      <div class="image-placeholder">Malaysia Event Photo 2</div>
+      <div class="image-placeholder">NFT Screenshot</div>
+      <div class="image-placeholder">Previous Events Gallery</div>
+    </div>
   </div>
   <div class="background-text">global</div>
 </div>
 
 <div class="slide">
   <div class="content">
-    <p class="main-text">target market: gen z, web3, startups, and forward-thinking brands.</p>
+    <p class="main-text">target market: gen z, web3, venture-backed startups, and forward-thinking brands.</p>
     <p class="sub-text">we're at the intersection of the future and fun.</p>
     <div class="chart-container">
       <canvas id="marketChart"></canvas>
@@ -209,6 +250,10 @@ body, html {
   <div class="content">
     <p class="main-text">scrappy & resourceful.</p>
     <p class="sub-text">#1 on Google with just $30. coded 10 websites with zero experience. if it needs doing, we'll get it done.</p>
+    <div class="split-content">
+      <div class="image-placeholder">Google Search Results Screenshot</div>
+      <div class="image-placeholder">Website Portfolio Collage</div>
+    </div>
   </div>
   <div class="background-text">hustle</div>
 </div>
@@ -217,6 +262,10 @@ body, html {
   <div class="content">
     <p class="main-text">creating "fourth spaces"</p>
     <p class="sub-text">inspired by Patricia Mou's concept and the documentary "Join or Die"</p>
+    <div class="split-content">
+      <div class="image-placeholder">Fourth Space Concept Illustration</div>
+      <div class="image-placeholder">Join or Die Documentary Screenshot</div>
+    </div>
   </div>
   <div class="background-text">community</div>
 </div>
@@ -225,6 +274,10 @@ body, html {
   <div class="content">
     <p class="main-text">creatives on fire</p>
     <p class="sub-text">empowering underrepresented creatives through resources, education, and networking</p>
+    <div class="split-content">
+      <div class="image-placeholder">Creatives on Fire Event Photo 1</div>
+      <div class="image-placeholder">Creatives on Fire Event Photo 2</div>
+    </div>
   </div>
   <div class="background-text">empower</div>
 </div>
@@ -235,8 +288,40 @@ body, html {
     <p class="sub-text"><span class="highlight">52%</span> of business leaders believe events drive the most ROI</p>
     <p class="sub-text"><span class="highlight">70%</span> are increasing their event budgets</p>
     <p class="sub-text"><span class="highlight">80%</span> recognize the power of event-led growth</p>
+    <div class="image-placeholder">Industry Trends Infographic</div>
   </div>
   <div class="background-text">disrupt</div>
+</div>
+
+<div class="slide">
+  <div class="content">
+    <p class="main-text">our milestones</p>
+    <div class="milestone">
+      <div class="milestone-date">month 1-3</div>
+      <div class="milestone-content">launch website and social media presence. secure first 3 major clients. finalize core team of 5 members. purchase high-end event photography equipment.</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-date">month 4-6</div>
+      <div class="milestone-content">host first signature event. establish partnerships with telos.haus and freelancers hub locally. reach $20,000 in revenue.</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-date">month 7-9</div>
+      <div class="milestone-content">establish reputation in market. develop signature style and continue to create and build portfolio of exclusive events. begin receiving client referrals from high-profile events.</div>
+    </div>
+    <div class="milestone">
+      <div class="milestone-date">month 10-12</div>
+      <div class="milestone-content">secure 3 contracts with corporate brands by year-end. launch referral program for clients. reach revenue of 40% from referrals and 60% from paid leads by month 12.</div>
+    </div>
+  </div>
+  <div class="background-text">progress</div>
+</div>
+
+<div class="slide">
+  <div class="content">
+    <p class="main-text">our goals</p>
+    <p class="sub-text">We aim to achieve at least <span class="highlight">$40,000</span> in revenue within 12 months, secure <span class="highlight">10</span> unique clients, expand our all-women team by <span class="highlight">5</span> members, and establish <span class="highlight">4</span> key partnerships.</p>
+  </div>
+  <div class="background-text">achieve</div>
 </div>
 
 <div class="slide">
@@ -250,7 +335,6 @@ body, html {
 <div class="slide">
   <div class="content">
     <p class="main-text">Thank You</p>
-
   </div>
   <div class="background-text">gratitude</div>
 </div>
@@ -265,6 +349,9 @@ const observer = new IntersectionObserver((entries, observer) => {
       entry.target.querySelector('.content').classList.add('visible');
       if (entry.target.querySelector('.logo-underline')) {
         logoUnderline.classList.add('visible');
+      }
+      if (entry.target.querySelector('#litmus-text')) {
+        typeWriter("How a person reacts to 'Underage & Overserved' serves as an effective litmus test for whether or not someone is fun at parties... :)", document.getElementById("litmus-text"));
       }
       if (entry.target.querySelector('#reviewChart')) {
         createReviewChart();
@@ -281,6 +368,19 @@ const observer = new IntersectionObserver((entries, observer) => {
 slides.forEach(slide => {
   observer.observe(slide);
 });
+
+function typeWriter(text, element, speed = 50) {
+  let i = 0;
+  element.innerHTML = '';
+  function type() {
+    if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
 
 function createReviewChart() {
   const ctx = document.getElementById('reviewChart').getContext('2d');
@@ -299,7 +399,7 @@ function createReviewChart() {
       responsive: true,
       maintainAspectRatio: false,
       scales: {
-        y: {
+         y: {
           beginAtZero: true
         }
       }
@@ -310,11 +410,12 @@ function createReviewChart() {
 function createMarketChart() {
   const ctx = document.getElementById('marketChart').getContext('2d');
   new Chart(ctx, {
-    type: 'doughnut',
+    type: 'bar',
     data: {
-      labels: ['Gen Z', 'Web3', 'Startups', 'Forward-thinking Brands'],
+      labels: ['Gen Z', 'Web3', 'Venture-backed Startups', 'Forward-thinking Brands'],
       datasets: [{
-        data: [30, 25, 25, 20],
+        label: 'Market Potential (in billions $)',
+        data: [68, 81, 150, 50],
         backgroundColor: [
           'rgba(230, 166, 76, 0.8)',
           'rgba(230, 166, 76, 0.6)',
@@ -325,7 +426,16 @@ function createMarketChart() {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Market Potential (in billions $)'
+          }
+        }
+      }
     }
   });
 }
