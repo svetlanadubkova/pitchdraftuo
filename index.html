@@ -19,18 +19,25 @@ body, html {
   color: var(--text-color);
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  overflow-x: hidden;
+  overflow: hidden;
   text-transform: lowercase;
 }
 .slide {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 50px 10%;
   box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.slide.active {
+  opacity: 1;
 }
 .logo {
   font-size: 6vw;
@@ -73,16 +80,6 @@ body, html {
 .visible {
   opacity: 1;
   transform: translateY(0);
-}
-.background-text {
-  position: absolute;
-  font-size: 20vw;
-  opacity: 0.05;
-  z-index: -1;
-  white-space: nowrap;
-  font-weight: 700;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
 }
 .logo-underline {
   width: 0;
@@ -136,11 +133,16 @@ body, html {
   font-size: 1.5vw;
   width: 70%;
 }
+.small-text {
+  font-size: 1vw;
+  font-style: normal;
+  font-family: 'Montserrat', sans-serif;
+}
 </style>
 </head>
 <body>
 
-<div class="slide">
+<div class="slide active">
   <div class="content">
     <div class="logo">
       <span class="logo-underage">underage</span><br>
@@ -149,24 +151,21 @@ body, html {
     <div class="logo-underline"></div>
     <p class="sub-text">polished yet playful hospitality</p>
   </div>
-  <div class="background-text">elevate</div>
 </div>
 
 <div class="slide">
   <div class="content">
-    <p class="main-text">"within 10 years, the top brands won't be defined by their products, but by the experiences they create. we're building that future right now."</p>
+    <p class="main-text">"within 10 years, the top brands won't be defined by their products, but by the experiences they create."</p>
     <p class="sub-text">consumers crave meaning and connection, not just products.</p>
   </div>
-  <div class="background-text">future</div>
 </div>
 
 <div class="slide">
   <div class="content">
     <p class="main-text">every year, brands waste <span class="highlight">$1.5 billion</span> on boring, forgettable events.</p>
-    <p class="sub-text">we make sure your event investment creates lasting, unforgettable experiences.</p>
+    <p class="sub-text">we make sure your event investment creates lasting, unforgettable experiences. thoughtful, playful, elevated.</p>
     <div class="image-placeholder">Infographic: Wasted Event Budgets</div>
   </div>
-  <div class="background-text">invest</div>
 </div>
 
 <div class="slide">
@@ -175,29 +174,18 @@ body, html {
     <p class="sub-text">underage & overserved ensures every penny you spend turns into something memorable.</p>
     <div class="image-placeholder">Event Photo: Guests Connecting</div>
   </div>
-  <div class="background-text">connect</div>
-</div>
-
-<div class="slide">
-  <div class="content split-content">
-    <div>
-      <p class="main-text">"those who dance are considered insane by those who cannot hear the music."</p>
-      <p class="sub-text">we hear the music. we invite your guests to feel it.</p>
-    </div>
-    <div>
-      <p class="sub-text" id="litmus-text"></p>
-    </div>
-  </div>
-  <div class="background-text">dance</div>
 </div>
 
 <div class="slide">
   <div class="content">
-    <p class="main-text">thoughtful, playful, elevated.</p>
-    <p class="sub-text">for people who appreciate great hospitality without the stuffiness.</p>
-    <div class="image-placeholder">Event Photo: Playful Moment</div>
+    <p class="main-text">case study</p>
+    <p class="sub-text">underage&overserved teamed up with side quest at fractal tech to increase their average event attendance by >300% with thoughtful event marketing and playful, bespoke touches.</p>
+    <div class="split-content">
+      <div class="image-placeholder">Event Photo</div>
+      <div class="image-placeholder">Projection GIF</div>
+      <div class="image-placeholder">Email Blast Screenshot</div>
+    </div>
   </div>
-  <div class="background-text">elevate</div>
 </div>
 
 <div class="slide">
@@ -206,7 +194,6 @@ body, html {
     <p class="sub-text">russian, haitian, and proud native new yorkers.</p>
     <div class="image-placeholder">Team Photo</div>
   </div>
-  <div class="background-text">diversity</div>
 </div>
 
 <div class="slide">
@@ -218,7 +205,6 @@ body, html {
     </div>
     <div class="image-placeholder">Taskrabbit Reviews Screenshot</div>
   </div>
-  <div class="background-text">excel</div>
 </div>
 
 <div class="slide">
@@ -232,7 +218,6 @@ body, html {
       <div class="image-placeholder">Previous Events Gallery</div>
     </div>
   </div>
-  <div class="background-text">global</div>
 </div>
 
 <div class="slide">
@@ -243,7 +228,6 @@ body, html {
       <canvas id="marketChart"></canvas>
     </div>
   </div>
-  <div class="background-text">future</div>
 </div>
 
 <div class="slide">
@@ -255,7 +239,6 @@ body, html {
       <div class="image-placeholder">Website Portfolio Collage</div>
     </div>
   </div>
-  <div class="background-text">hustle</div>
 </div>
 
 <div class="slide">
@@ -267,19 +250,18 @@ body, html {
       <div class="image-placeholder">Join or Die Documentary Screenshot</div>
     </div>
   </div>
-  <div class="background-text">community</div>
 </div>
 
 <div class="slide">
   <div class="content">
     <p class="main-text">creatives on fire</p>
     <p class="sub-text">empowering underrepresented creatives through resources, education, and networking</p>
+    <p class="sub-text">"The best way to find yourself is to lose yourself in the service of others." - Gandhi</p>
     <div class="split-content">
       <div class="image-placeholder">Creatives on Fire Event Photo 1</div>
       <div class="image-placeholder">Creatives on Fire Event Photo 2</div>
     </div>
   </div>
-  <div class="background-text">empower</div>
 </div>
 
 <div class="slide">
@@ -288,9 +270,10 @@ body, html {
     <p class="sub-text"><span class="highlight">52%</span> of business leaders believe events drive the most ROI</p>
     <p class="sub-text"><span class="highlight">70%</span> are increasing their event budgets</p>
     <p class="sub-text"><span class="highlight">80%</span> recognize the power of event-led growth</p>
+    <p class="sub-text">The New York corporate event market is projected to grow to <span class="highlight">$77.1 billion</span> by 2030, with a compound annual growth rate (CAGR) of 16.7%.</p>
+    <p class="small-text">source: allied market research (https://www.alliedmarketresearch.com/press-release/us-corporate-event-market.html)</p>
     <div class="image-placeholder">Industry Trends Infographic</div>
   </div>
-  <div class="background-text">disrupt</div>
 </div>
 
 <div class="slide">
@@ -313,7 +296,6 @@ body, html {
       <div class="milestone-content">secure 3 contracts with corporate brands by year-end. launch referral program for clients. reach revenue of 40% from referrals and 60% from paid leads by month 12.</div>
     </div>
   </div>
-  <div class="background-text">progress</div>
 </div>
 
 <div class="slide">
@@ -321,66 +303,69 @@ body, html {
     <p class="main-text">our goals</p>
     <p class="sub-text">We aim to achieve at least <span class="highlight">$40,000</span> in revenue within 12 months, secure <span class="highlight">10</span> unique clients, expand our all-women team by <span class="highlight">5</span> members, and establish <span class="highlight">4</span> key partnerships.</p>
   </div>
-  <div class="background-text">achieve</div>
 </div>
 
 <div class="slide">
   <div class="content">
-    <p class="main-text">"The best way to find yourself is to lose yourself in the service of others."</p>
-    <p class="sub-text">- Gandhi</p>
+    <p class="main-text">our services</p>
+    <p class="sub-text">underage & overserved is a full-service event business offering:</p>
+    <ul class="sub-text">
+      <li>Event planning and production</li>
+      <li>Staffing services</li>
+      <li>Event photography</li>
+      <li>Themed events</li>
+      <li>Floral arrangements</li>
+      <li>Catering coordination</li>
+      <li>Bespoke event consulting</li>
+    </ul>
+    <p class="sub-text">We're growing into a comprehensive event production company, leveraging our expertise in staffing, photography, and coordination to deliver unforgettable experiences.</p>
   </div>
-  <div class="background-text">serve</div>
 </div>
 
 <div class="slide">
   <div class="content">
     <p class="main-text">Thank You</p>
+    <p class="sub-text">"those who dance are considered insane by those who cannot hear the music."</p>
   </div>
-  <div class="background-text">gratitude</div>
 </div>
 
 <script>
 const slides = document.querySelectorAll('.slide');
-const logoUnderline = document.querySelector('.logo-underline');
+let currentSlide = 0;
 
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.querySelector('.content').classList.add('visible');
-      if (entry.target.querySelector('.logo-underline')) {
-        logoUnderline.classList.add('visible');
-      }
-      if (entry.target.querySelector('#litmus-text')) {
-        typeWriter("How a person reacts to 'Underage & Overserved' serves as an effective litmus test for whether or not someone is fun at parties... :)", document.getElementById("litmus-text"));
-      }
-      if (entry.target.querySelector('#reviewChart')) {
-        createReviewChart();
-      }
-      if (entry.target.querySelector('#marketChart')) {
-        createMarketChart();
-      }
-    } else {
-      entry.target.querySelector('.content').classList.remove('visible');
-    }
-  });
-}, { threshold: 0.1 });
-
-slides.forEach(slide => {
-  observer.observe(slide);
-});
-
-function typeWriter(text, element, speed = 50) {
-  let i = 0;
-  element.innerHTML = '';
-  function type() {
-    if (i < text.length) {
-        element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
+function showSlide(index) {
+  slides[currentSlide].classList.remove('active');
+  slides[index].classList.add('active');
+  currentSlide = index;
+  
+  const content = slides[currentSlide].querySelector('.content');
+  content.classList.add('visible');
+  
+  if (slides[currentSlide].querySelector('#reviewChart')) {
+    createReviewChart();
   }
-  type();
+  if (slides[currentSlide].querySelector('#marketChart')) {
+    createMarketChart();
+  }
 }
+
+function nextSlide() {
+  let nextIndex = (currentSlide + 1) % slides.length;
+  showSlide(nextIndex);
+}
+
+function prevSlide() {
+  let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(prevIndex);
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Space' || event.code === 'ArrowRight') {
+    nextSlide();
+  } else if (event.code === 'ArrowLeft' || event.code === 'Backspace') {
+    prevSlide();
+  }
+});
 
 function createReviewChart() {
   const ctx = document.getElementById('reviewChart').getContext('2d');
@@ -439,7 +424,9 @@ function createMarketChart() {
     }
   });
 }
-</script>
 
+// Initialize the first slide
+showSlide(0);
+</script>
 </body>
 </html>
