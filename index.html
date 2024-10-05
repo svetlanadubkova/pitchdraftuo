@@ -40,7 +40,7 @@ body, html {
   opacity: 1;
 }
 .logo {
-  font-size: 6vw;
+  font-size: 5vw;
   line-height: 0.9;
   margin-bottom: 20px;
   text-align: left;
@@ -56,7 +56,7 @@ body, html {
   letter-spacing: 2px;
 }
 .main-text {
-  font-size: 5vw;
+  font-size: 4vw;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 20px;
@@ -64,7 +64,7 @@ body, html {
   font-style: italic;
 }
 .sub-text {
-  font-size: 2.5vw;
+  font-size: 2vw;
   font-weight: 400;
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -97,14 +97,14 @@ body, html {
 }
 .image-placeholder {
   width: 100%;
-  height: 30vh;
+  height: 25vh;
   background-color: rgba(230, 166, 76, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
-  font-size: 2vw;
+  font-size: 1.5vw;
   margin: 10px 0;
 }
 .split-content {
@@ -123,20 +123,24 @@ body, html {
   margin-bottom: 20px;
 }
 .milestone-date {
-  font-size: 2vw;
+  font-size: 1.5vw;
   font-weight: bold;
   margin-right: 20px;
   color: var(--accent-color);
   width: 30%;
 }
 .milestone-content {
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   width: 70%;
 }
 .small-text {
-  font-size: 1vw;
+  font-size: 0.8vw;
   font-style: normal;
   font-family: 'Montserrat', sans-serif;
+}
+ul.sub-text {
+  font-size: 1.5vw;
+  padding-left: 20px;
 }
 </style>
 </head>
@@ -335,6 +339,13 @@ function showSlide(index) {
   
   const content = slides[currentSlide].querySelector('.content');
   content.classList.add('visible');
+  
+  if (currentSlide === 0) {
+    const logoUnderline = slides[currentSlide].querySelector('.logo-underline');
+    setTimeout(() => {
+      logoUnderline.classList.add('visible');
+    }, 500);
+  }
   
   if (slides[currentSlide].querySelector('#reviewChart')) {
     createReviewChart();
