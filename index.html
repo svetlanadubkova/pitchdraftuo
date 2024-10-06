@@ -56,7 +56,7 @@ body, html {
   letter-spacing: 2px;
 }
 .main-text {
-  font-size: 4vw;
+  font-size: 3.5vw;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 20px;
@@ -64,7 +64,7 @@ body, html {
   font-style: italic;
 }
 .sub-text {
-  font-size: 2vw;
+  font-size: 1.8vw;
   font-weight: 400;
   font-family: 'Playfair Display', serif;
   font-style: italic;
@@ -142,6 +142,28 @@ ul.sub-text {
   font-size: 1.5vw;
   padding-left: 20px;
 }
+.case-study-gif {
+  width: 48%;
+  max-height: 50vh;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+.case-study-chart {
+  width: 48%;
+  height: 50vh;
+}
+.case-study-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.team-photo {
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -176,14 +198,13 @@ ul.sub-text {
   <div class="content">
     <p class="main-text">case study</p>
     <p class="sub-text">underage&overserved teamed up with side quest at fractal tech to increase their average event attendance by >300% with thoughtful event marketing and playful, bespoke touches.</p>
-    <div class="split-content">
-      <div class="image-placeholder">Event Photo</div>
-      <div class="image-placeholder">Projection GIF</div>
-      <div class="image-placeholder">Email Blast Screenshot</div>
-      <div>
-        <p class="sub-text">hospitality isn't just service—it's connection. underage & overserved ensures every penny you spend turns into something memorable.</p>
+    <div class="case-study-content">
+      <img src="https://i.imgur.com/g2anG9S.gif" alt="Side Quest Case Study" class="case-study-gif">
+      <div class="case-study-chart">
+        <canvas id="attendanceChart"></canvas>
       </div>
     </div>
+    <p class="sub-text">hospitality isn't just service—it's connection. underage & overserved ensures every penny you spend turns into something memorable.</p>
   </div>
 </div>
 
@@ -191,7 +212,7 @@ ul.sub-text {
   <div class="content">
     <p class="main-text">women-owned, immigrant-owned.</p>
     <p class="sub-text">proud native new yorkers.</p>
-    <div class="image-placeholder">Team Photo</div>
+    <img src="https://i.imgur.com/dt6ejiq.png" alt="Team Photo" class="team-photo">
   </div>
 </div>
 
@@ -353,6 +374,9 @@ function showSlide(index) {
   if (slides[currentSlide].querySelector('#marketChart')) {
     createMarketChart();
   }
+  if (slides[currentSlide].querySelector('#attendanceChart')) {
+    createAttendanceChart();
+  }
 }
 
 function nextSlide() {
@@ -424,6 +448,46 @@ function createMarketChart() {
           title: {
             display: true,
             text: 'Market Potential (in billions $)'
+          }
+        }
+      }
+    }
+  });
+}
+
+function createAttendanceChart() {
+  const ctx = document.getElementById('attendanceChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Before', 'After'],
+      datasets: [{
+        label: 'Average Attendance',
+        data: [10, 33],
+        backgroundColor: [
+          'rgba(230, 166, 76, 0.6)',
+          'rgba(230, 166, 76, 1)'
+        ]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Number of Attendees'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'Event Attendance Increase',
+          font: {
+            size: 16
           }
         }
       }
