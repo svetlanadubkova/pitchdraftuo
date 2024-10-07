@@ -117,6 +117,24 @@ body, html {
   width: 48%;
   margin-bottom: 20px;
 }
+.source-citation {
+  font-size: 0.8vw;
+  font-style: normal;
+  font-family: 'Montserrat', sans-serif;
+  text-align: right;
+  margin-top: 10px;
+  color: var(--text-color);
+}
+
+.source-citation a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.source-citation a:hover {
+  text-decoration: underline;
+}
+
 .milestone {
   display: flex;
   align-items: flex-start;
@@ -181,7 +199,7 @@ ul.sub-text {
   padding: 5px 8px;
   border-radius: 10px;
   transform: translate(-50%, -50%);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .mind-map-node:hover {
@@ -207,6 +225,51 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 1px;
   transform-origin: left center;
   animation: pulse 2s infinite;
+}
+
+.infographic {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.infographic-column {
+  width: 48%;
+}
+
+.infographic-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.infographic-percentage {
+  font-size: 2vw;
+  font-weight: bold;
+  margin-right: 10px;
+  color: var(--accent-color);
+}
+
+.infographic-text {
+  font-size: 1.5vw;
+}
+
+.infographic-title {
+  font-size: 2.5vw;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+.creatives-on-fire {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5vw;
+  line-height: 1.6;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: rgba(230, 166, 76, 0.1);
+  border-radius: 10px;
 }
 </style>
 </head>
@@ -234,7 +297,81 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
   <div class="content">
     <p class="main-text">every year, brands waste <span class="highlight">billions</span> on boring, forgettable events.</p>
     <p class="sub-text">we make sure your event investment creates lasting, unforgettable experiences. thoughtful, playful, elevated.</p>
-    <div class="image-placeholder">Infographic: Wasted Event Budgets</div>
+    <div class="infographic">
+      <div class="infographic-column">
+        <h3 class="infographic-title">Prospect-Targeted Events</h3>
+        <div class="infographic-item">
+          <span class="infographic-percentage">54%</span>
+          <span class="infographic-text">community or networking events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">46%</span>
+          <span class="infographic-text">brand pop-up events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">43%</span>
+          <span class="infographic-text">conferences or trade shows</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">39%</span>
+          <span class="infographic-text">product launches</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">37%</span>
+          <span class="infographic-text">private or VIP events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">32%</span>
+          <span class="infographic-text">webinars</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">27%</span>
+          <span class="infographic-text">virtual experiences</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">25%</span>
+          <span class="infographic-text">sales-led or local field events</span>
+        </div>
+      </div>
+      <div class="infographic-column">
+        <h3 class="infographic-title">Customer-Targeted Events</h3>
+        <div class="infographic-item">
+          <span class="infographic-percentage">45%</span>
+          <span class="infographic-text">sales-led or local field events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">44%</span>
+          <span class="infographic-text">brand pop-up events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">39%</span>
+          <span class="infographic-text">product launches</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">34%</span>
+          <span class="infographic-text">conferences or trade shows</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">31%</span>
+          <span class="infographic-text">private or VIP events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">29%</span>
+          <span class="infographic-text">sales-led or local field events</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">27%</span>
+          <span class="infographic-text">webinars</span>
+        </div>
+        <div class="infographic-item">
+          <span class="infographic-percentage">25%</span>
+          <span class="infographic-text">virtual experiences</span>
+        </div>
+      </div>
+      <p class="source-citation">Source: <a href="https://splashthat.com/resources/2024-outlook" target="_blank">SplashThat 2024 Outlook</a></p>
+  </div>
+</div>
+    </div>
   </div>
 </div>
 
@@ -320,7 +457,9 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
     <p class="sub-text">"The best way to find yourself is to lose yourself in the service of others." - Gandhi</p>
     <div class="split-content">
       <div><img src="https://i.imgur.com/J3wmHWH.jpeg" alt="Creatives on Fire Event Photo 1" class="image-placeholder"></div>
-      <div class="image-placeholder">workathons, technology workshops, community get-togethers, and informational panels—designed to foster collaboration, creativity, and financial independence within the creative community. hands-on learning, relationship-building, and growth opportunities that directly align with underage & overserved's vision of building meaningful, high-energy experiences.</div>
+      <div class="creatives-on-fire">
+        workathons, technology workshops, community get-togethers, and informational panels—designed to foster collaboration, creativity, and financial independence within the creative community. hands-on learning, relationship-building, and growth opportunities that directly align with underage & overserved's vision of building meaningful, high-energy experiences.
+      </div>
     </div>
   </div>
 </div>
