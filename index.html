@@ -181,12 +181,32 @@ ul.sub-text {
   padding: 5px 8px;
   border-radius: 10px;
   transform: translate(-50%, -50%);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.mind-map-node:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(230, 166, 76, 0.5);
+  z-index: 10;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
 .mind-map-line {
   position: absolute;
   background-color: var(--text-color);
   height: 1px;
   transform-origin: left center;
+  animation: pulse 2s infinite;
 }
 </style>
 </head>
@@ -591,7 +611,7 @@ function createStrategyMap() {
     nodeElement.innerHTML = node.label.replace('\n', '<br>');
     container.appendChild(nodeElement);
   });
-  connections.forEach(([fromIndex, toIndex]) => {
+ connections.forEach(([fromIndex, toIndex], index) => {
     const fromNode = nodes[fromIndex];
     const toNode = nodes[toIndex];
     const line = document.createElement('div');
@@ -606,6 +626,10 @@ function createStrategyMap() {
     line.style.top = `${fromY}px`;
     const angle = Math.atan2(toY - fromY, toX - fromX) * (180 / Math.PI);
     line.style.transform = `rotate(${angle}deg)`;
+    
+    // Add a slight delay to each line's animation
+    line.style.animationDelay = `${index * 0.1}s`;
+    
     container.appendChild(line);
   });
 }
