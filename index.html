@@ -97,7 +97,7 @@ body, html {
 }
 .image-placeholder {
   width: 100%;
-  height: 25vh;
+  height: 50vh;
   background-color: rgba(230, 166, 76, 0.2);
   display: flex;
   justify-content: center;
@@ -264,10 +264,10 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
   <div class="content">
     <p class="main-text"><span class="highlight">300+</span> five-star reviews</p>
     <p class="sub-text">consistently ranked #1 on staffing platforms like Taskrabbit.</p>
-    <div class="chart-container">
-      <canvas id="reviewChart"></canvas>
+    <div class="split-content">
+      <div><img src="https://i.imgur.com/MfEW1mR.png" alt="review profile" class="image-placeholder"></div>
+      <div><img src="https://i.imgur.com/ziZd40E.png" alt="customer review" class="image-placeholder"></div>
     </div>
-    <div class="image-placeholder">Taskrabbit Reviews Screenshot</div>
   </div>
 </div>
 
@@ -277,9 +277,8 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
     <p class="sub-text">5 thoughtfully executed events, all 5-star reviews. proof of fun? we've got NFTs for that.</p>
     <div class="split-content">
       <div class="image-placeholder">Malaysia Event Photo 1</div>
-      <div class="image-placeholder">Malaysia Event Photo 2</div>
       <div class="image-placeholder">NFT Screenshot</div>
-      <div class="image-placeholder">Previous Events Gallery</div>
+     
     </div>
   </div>
 </div>
@@ -288,9 +287,7 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
   <div class="content">
     <p class="main-text">target market: gen z, web3, venture-backed startups, and forward-thinking brands.</p>
     <p class="sub-text">we're at the intersection of the future and fun.</p>
-    <div class="chart-container">
-      <canvas id="marketChart"></canvas>
-    </div>
+    
   </div>
 </div>
 
@@ -299,8 +296,8 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
     <p class="main-text">scrappy & resourceful.</p>
     <p class="sub-text">#1 on Google with just $30. coded 10 websites with zero experience. if it needs doing, we'll get it done.</p>
     <div class="split-content">
-      <div class="image-placeholder">Google Search Results Screenshot</div>
-      <div class="image-placeholder">Website Portfolio Collage</div>
+      <div><img src="https://i.imgur.com/rgtSiCb.png" alt="Google Search Results Screenshot" class="image-placeholder"></div>
+      <div><img src="https://i.imgur.com/dRioYaC.png" alt="Website Portfolio Collage" class="image-placeholder"></div>
     </div>
   </div>
 </div>
@@ -424,9 +421,7 @@ function showSlide(index) {
   if (slides[currentSlide].querySelector('#reviewChart')) {
     createReviewChart();
   }
-  if (slides[currentSlide].querySelector('#marketChart')) {
-    createMarketChart();
-  }
+ 
   if (slides[currentSlide].querySelector('#attendanceChart')) {
     createAttendanceChart();
   }
