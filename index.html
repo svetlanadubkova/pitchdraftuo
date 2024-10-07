@@ -334,10 +334,13 @@ transition: transform 0.3s ease, box-shadow 0.3s ease;
     <p class="sub-text"><span class="highlight">52%</span> of business leaders believe events drive the most ROI</p>
     <p class="sub-text"><span class="highlight">70%</span> are increasing their event budgets</p>
     <p class="sub-text"><span class="highlight">80%</span> recognize the power of event-led growth</p>
-    <p class="sub-text">The New York corporate event market is projected to grow to <span class="highlight">$77.1 billion</span> by 2030, with a compound annual growth rate (CAGR) of 16.7%.</p>
-    <p class="small-text">source: allied market research (https://www.alliedmarketresearch.com/press-release/us-corporate-event-market.html)</p>
-    <div class="image-placeholder">Industry Trends Infographic</div>
+    <p class="sub-text">The New York corporate event market is projected to grow from the most prominent U.S. market in 2020 to <span class="highlight">$77.1 billion</span> by 2030, with a compound annual growth rate (CAGR) of 16.7%.</p>
+    <div class="chart-container">
+      <canvas id="nyMarketGrowthChart"></canvas>
+    </div>
+    <p class="small-text">Source: Allied Market Research</p>
   </div>
+</div>
 </div>
 
 <div class="slide">
@@ -430,6 +433,9 @@ function showSlide(index) {
   if (slides[currentSlide].querySelector('#strategy-map')) {
     createStrategyMap();
   }
+     if (slides[currentSlide].querySelector('#nyMarketGrowthChart')) {
+    createNYMarketGrowthChart();
+  }
 }
 
 function nextSlide() {
@@ -449,6 +455,69 @@ document.addEventListener('keydown', (event) => {
     prevSlide();
   }
 });
+function createNYMarketGrowthChart() {
+  const ctx = document.getElementById('nyMarketGrowthChart').getContext('2d');
+  
+  // Calculate market size for each year based on CAGR of 16.7%
+  const startValue = 77.1 / Math.pow(1.167, 10); // Calculate 2020 value
+  const years = Array.from({length: 11}, (_, i) => 2020 + i);
+  const marketSizes = years.map((_, i) => startValue * Math.pow(1.167, i));
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'New York Corporate Event Market Size',
+        data: marketSizes,
+        borderColor: 'rgb(230, 166, 76)',
+        backgroundColor: 'rgba(230, 166, 76, 0.1)',
+        tension: 0.1,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Market Size (in billions $)'
+          },
+          ticks: {
+            callback: function(value) {
+              return '$' + value.toFixed(1) + 'B';
+            }
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Year'
+          }
+        }
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: 'New York Corporate Event Market Growth (2020-2030)',
+          font: {
+            size: 16
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return 'Market Size: $' + context.parsed.y.toFixed(1) + ' billion';
+            }
+          }
+        }
+      }
+    }
+  });
+}
 
 function createReviewChart() {
   const ctx = document.getElementById('reviewChart').getContext('2d');
