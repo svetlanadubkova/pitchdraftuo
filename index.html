@@ -754,6 +754,31 @@ function createAttendanceChart() {
     }
   });
 }
+// Add these new functions for touch support
+let touchStartX = 0;
+let touchEndX = 0;
+
+function checkDirection() {
+  if (touchEndX < touchStartX) nextSlide();
+  if (touchEndX > touchStartX) prevSlide();
+}
+
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  checkDirection();
+});
+
+// Add this to enable advancing slides on tap for mobile devices
+document.addEventListener('click', (event) => {
+  // Check if the click is not on an interactive element
+  if (event.target.tagName !== 'A' && event.target.tagName !== 'BUTTON') {
+    nextSlide();
+  }
+});
 
 function createStrategyMap() {
   const container = document.getElementById('strategy-map');
