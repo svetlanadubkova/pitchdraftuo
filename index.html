@@ -164,6 +164,30 @@ ul.sub-text {
   object-fit: contain;
   margin-top: 20px;
 }
+.mind-map {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+.mind-map-node {
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  color: var(--text-color);
+  text-align: center;
+  white-space: pre-line;
+  background-color: rgba(26, 26, 26, 0.7);
+  padding: 5px 8px;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+.mind-map-line {
+  position: absolute;
+  background-color: var(--text-color);
+  height: 1px;
+  transform-origin: left center;
+}
 </style>
 </head>
 <body>
@@ -212,7 +236,7 @@ ul.sub-text {
   <div class="content">
     <p class="main-text">women-owned, immigrant-owned.</p>
     <p class="sub-text">proud native new yorkers.</p>
-    <img src="https://i.imgur.com/6lexhng.png" alt="Team Photo" class="team-photo">
+    <img src="https://i.imgur.com/kN56Hyc.png" alt="Team Photo" class="team-photo">
   </div>
 </div>
 
@@ -344,11 +368,17 @@ ul.sub-text {
 
 <div class="slide">
   <div class="content">
+    <div class="mind-map" id="strategy-map"></div>
+  </div>
+</div>
+
+<div class="slide">
+   
+  <div class="content">
     <p class="main-text">Thank You</p>
     <p class="sub-text">"those who dance are considered insane by those who cannot hear the music."</p>
   </div>
 </div>
-
 <script>
 const slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
@@ -376,6 +406,9 @@ function showSlide(index) {
   }
   if (slides[currentSlide].querySelector('#attendanceChart')) {
     createAttendanceChart();
+  }
+  if (slides[currentSlide].querySelector('#strategy-map')) {
+    createStrategyMap();
   }
 }
 
@@ -492,6 +525,88 @@ function createAttendanceChart() {
         }
       }
     }
+  });
+}
+
+function createStrategyMap() {
+  const container = document.getElementById('strategy-map');
+  const width = container.offsetWidth;
+  const height = container.offsetHeight;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const nodes = [
+    { label: 'Underage&Overserved', x: 0, y: 0 },
+    { label: 'SEO', x: 0.3, y: -0.3 },
+    { label: 'Domains', x: 0.6, y: -0.3 },
+    { label: 'manhattanparty\nphotographer.com', x: 0.9, y: -0.4 },
+    { label: 'brooklynparty\nphotographer.com', x: 0.9, y: -0.2 },
+    { label: 'brooklynevent\nphotography.com', x: 0.9, y: 0.2 },
+    { label: 'nycevent\nplanner.xyz', x: 0.9, y: 0.4 },
+    { label: 'Photography', x: 0.3, y: 0.3 },
+    { label: 'branded U&O\npolaroids', x: 0.6, y: 0.4 },
+    { label: 'Events', x: -0.3, y: 0 },
+    { label: 'Partnerships', x: -0.6, y: 0 },
+    { label: 'freelancers union', x: -0.9, y: -0.3 },
+    { label: 'telos.haus', x: -0.9, y: 0 },
+    { label: 'fractal community', x: -0.9, y: 0.3 },
+    { label: 'TaskRabbit', x: 0, y: 0.5 },
+    { label: 'Merch', x: -0.3, y: -0.4 },
+    { label: 'magnets', x: -0.6, y: -0.5 },
+    { label: 'totes', x: -0.3, y: -0.5 },
+    { label: 'stickers', x: 0, y: -0.5 },
+    { label: 'Creatives on Fire', x: -0.6, y: -0.3 },
+    { label: 'timeline event\nplanning tool', x: 0.3, y: -0.5 },
+    { label: 'monetization', x: 0.6, y: -0.5 },
+    { label: 'Staffing', x: -0.15, y: 0.3 },
+    { label: 'Bartending', x: -0.3, y: 0.4 },
+    { label: 'Production', x: -0.45, y: 0.3 },
+    { label: 'Floral', x: -0.6, y: 0.4 },
+    { label: 'Consulting', x: -0.75, y: 0.3 },
+  ];
+  const connections = [
+    [0, 1], [0, 7], [0, 9], [0, 10], [0, 14], [0, 15], [0, 19],
+    [1, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+    [7, 8], [7, 9], // Photography connected to Events
+    [9, 10], [10, 11], [10, 12], [10, 13],
+    [15, 16], [15, 17], [15, 18],
+    [0, 20], [20, 21], [20, 1], // Timeline tool connected to SEO
+    [14, 9], [14, 7], // TaskRabbit connected to Events and Photography
+    [8, 15], [8, 9], // Polaroids connected to Merch and Events
+    [15, 9], // Merch connected to Events
+    [19, 9], // Creatives on Fire connected to Events
+    [19, 10], // Creatives on Fire connected to Partnerships
+    [0, 22], [22, 9], // Staffing connected to U&O and Events
+    [0, 23], [23, 9], // Bartending connected to U&O and Events
+    [0, 24], [24, 9], // Production connected to U&O and Events
+    [0, 25], [25, 9], // Floral connected to U&O and Events
+    [0, 26], [26, 9], // Consulting connected to U&O and Events
+    [3, 7], [4, 7], [5, 7], // All photography domains connected to Photography
+    [6, 9], // nyceventplanner.xyz connected to Events
+  ];
+  nodes.forEach((node, index) => {
+    const nodeElement = document.createElement('div');
+    nodeElement.className = 'mind-map-node';
+    nodeElement.style.left = `${centerX + node.x * width * 0.45}px`;
+    nodeElement.style.top = `${centerY + node.y * height * 0.45}px`;
+    nodeElement.innerHTML = node.label.replace('\n', '<br>');
+    container.appendChild(nodeElement);
+  });
+  connections.forEach(([fromIndex, toIndex]) => {
+    const fromNode = nodes[fromIndex];
+    const toNode = nodes[toIndex];
+    const line = document.createElement('div');
+    line.className = 'mind-map-line';
+    const fromX = centerX + fromNode.x * width * 0.45;
+    const fromY = centerY + fromNode.y * height * 0.45;
+    const toX = centerX + toNode.x * width * 0.45;
+    const toY = centerY + toNode.y * height * 0.45;
+    const length = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
+    line.style.width = `${length}px`;
+    line.style.left = `${fromX}px`;
+    line.style.top = `${fromY}px`;
+    const angle = Math.atan2(toY - fromY, toX - fromX) * (180 / Math.PI);
+    line.style.transform = `rotate(${angle}deg)`;
+    container.appendChild(line);
   });
 }
 
