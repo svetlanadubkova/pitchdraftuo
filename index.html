@@ -196,23 +196,25 @@ ul.sub-text {
   margin-top: 20px;
 }
 .mind-map {
-  width: 100%;
+  width: 90%;
   height: 80vh;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 .mind-map-node {
   position: absolute;
   font-family: 'Playfair Display', serif;
-  font-size: 20px;
+  font-size: 18px; /* Slightly reduced font size */
   color: var(--text-color);
   text-align: center;
   white-space: pre-line;
   background-color: rgba(26, 26, 26, 0.7);
-  padding: 5px 8px;
-  border-radius: 10px;
+  padding: 8px 12px; /* Increased padding */
+  border-radius: 15px;
   transform: translate(-50%, -50%);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 150px; /* Limit the width of nodes */
+  word-wrap: break-word; /* Allow long words to break */
 }
 
 .mind-map-node:hover {
@@ -284,7 +286,7 @@ ul.sub-text {
 }
 
 .target-customer-node text {
-  font-size: 22px;
+  font-size: 28px;
   fill: #e6a64c;
   opacity: 0;
   transition: opacity 1s ease-in-out;
@@ -353,6 +355,7 @@ ul.sub-text {
   background-color: rgba(230, 166, 76, 0.1);
   border-left: 4px solid var(--accent-color);
   font-style: italic;
+  font-size: 38px;
 }
 
 @media (max-width: 768px) {
@@ -706,7 +709,7 @@ ul.sub-text {
 <!-- New PowerUp Award breakdown slide -->
 <div class="slide">
   <div class="content">
-    <p class="main-text">how we will utilize the $20,000 powerup award</p>
+    <p class="main-text">utilization of $20,000 powerup award</p>
     <div class="powerup-award">
       <div class="powerup-item">
         <span>photography & event equipment:</span>
@@ -721,11 +724,11 @@ ul.sub-text {
         <span class="powerup-amount">$1,000</span>
       </div>
       <div class="powerup-item">
-        <span>beginning product inventory:</span>
+        <span>beginning merch inventory:</span>
         <span class="powerup-amount">$1,500</span>
       </div>
       <div class="powerup-item">
-        <span>advertising (start-up only):</span>
+        <span>advertising (bark, the bash, taskrabbit, google ads):</span>
         <span class="powerup-amount">$1,500</span>
       </div>
       <div class="powerup-item">
@@ -738,7 +741,7 @@ ul.sub-text {
       </div>
     </div>
     <div class="strategic-note">
-      <p>Photography is a strategic marketing expense. I will leverage my photography business to attract clients for underage & overserved, creating a synergistic business model.</p>
+      <p>Photography not just a service of ours; it's a strategic marketing expense. I will synergistically leverage my photography business to attract clients for underage & overserved.</p>
     </div>
   </div>
 </div>
@@ -1054,98 +1057,17 @@ function createMarketersBeliefChart() {
   });
 }
 
-function createStrategyMap() {
-  const container = document.getElementById('strategy-map');
-  const width = container.offsetWidth;
-  const height = container.offsetHeight;
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const nodes = [
-    { label: 'Underage&Overserved', x: 0, y: 0 },
-    { label: 'SEO', x: 0.4, y: -0.4 },
-    { label: 'Domains', x: 0.8, y: -0.4 },
-    { label: 'manhattanparty\nphotographer.com', x: 1.2, y: -0.5 },
-    { label: 'brooklynparty\nphotographer.com', x: 1.2, y: -0.3 },
-    { label: 'brooklynevent\nphotography.com', x: 1.2, y: 0.3 },
-    { label: 'nycevent\nplanner.xyz', x: 1.2, y: 0.5 },
-    { label: 'Photography', x: 0.4, y: 0.4 },
-    { label: 'branded U&O\npolaroids', x: 0.8, y: 0.5 },
-    { label: 'Events', x: -0.4, y: 0 },
-    { label: 'Partnerships', x: -0.8, y: 0 },
-    { label: 'freelancers union', x: -1.2, y: -0.4 },
-    { label: 'telos.haus', x: -1.2, y: 0 },
-    { label: 'fractal community', x: -1.2, y: 0.4 },
-    { label: 'TaskRabbit', x: 0, y: 0.6 },
-    { label: 'Merch', x: -0.4, y: -0.5 },
-    { label: 'magnets', x: -0.8, y: -0.6 },
-    { label: 'totes', x: -0.4, y: -0.6 },
-    { label: 'stickers', x: 0, y: -0.6 },
-    { label: 'Creatives on Fire', x: -0.8, y: -0.4 },
-    { label: 'timeline event\nplanning tool', x: 0.4, y: -0.6 },
-    { label: 'monetization', x: 0.8, y: -0.6 },
-    { label: 'Staffing', x: -0.2, y: 0.4 },
-    { label: 'Bartending', x: -0.4, y: 0.5 },
-    { label: 'Production', x: -0.6, y: 0.4 },
-    { label: 'Floral', x: -0.8, y: 0.5 },
-    { label: 'Consulting', x: -1.0, y: 0.4 },
-  ];
-  const connections = [
-    [0, 1], [0, 7], [0, 9], [0, 10], [0, 14], [0, 15], [0, 19],
-    [1, 2], [2, 3], [2, 4], [2, 5], [2, 6],
-    [7, 8], [7, 9],
-    [9, 10], [10, 11], [10, 12], [10, 13],
-    [15, 16], [15, 17], [15, 18],
-    [0, 20], [20, 21], [20, 1],
-    [14, 9], [14, 7],
-    [8, 15], [8, 9],
-    [15, 9],
-    [19, 9],
-    [19, 10],
-    [0, 22], [22, 9],
-    [0, 23], [23, 9],
-    [0, 24], [24, 9],
-    [0, 25], [25, 9],
-    [0, 26], [26, 9],
-    [3, 7], [4, 7], [5, 7],
-    [6, 9],
-  ];
-  nodes.forEach((node, index) => {
-    const nodeElement = document.createElement('div');
-    nodeElement.className = 'mind-map-node';
-    nodeElement.style.left = `${centerX + node.x * width * 0.4}px`;
-    nodeElement.style.top = `${centerY + node.y * height * 0.4}px`;
-    nodeElement.innerHTML = node.label.replace('\n', '<br>');
-    container.appendChild(nodeElement);
-  });
-  connections.forEach(([fromIndex, toIndex], index) => {
-    const fromNode = nodes[fromIndex];
-    const toNode = nodes[toIndex];
-    const line = document.createElement('div');
-    line.className = 'mind-map-line';
-    const fromX = centerX + fromNode.x * width * 0.4;
-    const fromY = centerY + fromNode.y * height * 0.4;
-    const toX = centerX + toNode.x * width * 0.4;
-    const toY = centerY + toNode.y * height * 0.4;
-    const length = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
-    line.style.width = `${length}px`;
-    line.style.left = `${fromX}px`;
-    line.style.top = `${fromY}px`;
-    const angle = Math.atan2(toY - fromY, toX - fromX) * (180 / Math.PI);
-    line.style.transform = `rotate(${angle}deg)`;
-    
-    line.style.animationDelay = `${index * 0.1}s`;
-    
-    container.appendChild(line);
-  });
-}
-
+// Updated createTargetCustomerMindMap function
 function createTargetCustomerMindMap() {
-  const width = 1000;  // Increased from 800
-  const height = 700;  // Increased from 600
+  const width = 1000;
+  const height = 700;
 
   const svg = d3.select("#target-customer-mind-map")
       .attr("width", width)
       .attr("height", height);
+
+  // Clear any existing content in the SVG
+  svg.selectAll("*").remove();
 
   const data = {
     name: "target customer",
@@ -1187,22 +1109,21 @@ function createTargetCustomerMindMap() {
     ]
   };
 
-  const treeLayout = d3.tree().size([height - 100, width - 400]);  // Adjusted size
+  const treeLayout = d3.tree().size([height - 100, width - 400]);
   const root = d3.hierarchy(data);
 
   treeLayout.separation((a, b) => {
     if (a.parent === b.parent) {
-      return 1.5;  // Increased from 1.2 for more horizontal space
+      return 1.5;
     } else {
-      return 2.5;  // Increased from 2 for more vertical space
+      return 2.5;
     }
   });
 
   treeLayout(root);
 
-  // Adjust node positions
   root.each(d => {
-    d.y = d.depth * 200;  // Increase horizontal spacing
+    d.y = d.depth * 200;
   });
 
   const link = svg.selectAll(".target-customer-link")
@@ -1224,19 +1145,20 @@ function createTargetCustomerMindMap() {
     .attr("x", d => d.children ? -8 : 8)
     .attr("text-anchor", d => d.children ? "end" : "start")
     .text(d => d.data.name)
-    .style("font-size", "16px");  // Increased font size
+    .style("font-size", "16px");
+
+  // Clear existing pain points
+  const painPointsContainer = d3.select(".pain-points");
+  painPointsContainer.selectAll("p").remove();
 
   // Add pain points
   const painPoints = [
-    { pain: "overwhelming logistics", solution: "seamless end-to-end event management" },
+    { pain: "overwhelming logistics & time consuming planning", solution: "seamless end-to-end event management" },
     { pain: "lack of creativity", solution: "unique, tailored experiences that captivate" },
     { pain: "inconsistent quality", solution: "vetted, top-tier staff and vendors" },
-    { pain: "budget constraints", solution: "smart resource allocation for maximum impact" },
-    { pain: "time-consuming planning", solution: "efficient processes that save valuable time" },
-    { pain: "unmemorable events", solution: "thoughtful touches that leave lasting impressions" }
+    { pain: "unmemorable events & wasted event budgets", solution: "thoughtful touches that leave lasting impressions" }
   ];
 
-  const painPointsContainer = d3.select(".pain-points");
   painPoints.forEach((point, index) => {
     painPointsContainer.append("p")
       .html(`<strong>pain:</strong> ${point.pain}<br><span class="solution"><strong>solution:</strong> ${point.solution}</span>`)
@@ -1248,6 +1170,101 @@ function createTargetCustomerMindMap() {
     svg.selectAll("text").style("opacity", 1);
     d3.selectAll(".pain-points p").style("opacity", 1);
   }, 500);
+}
+
+// Updated createStrategyMap function
+function createStrategyMap() {
+  const container = document.getElementById('strategy-map');
+  const width = container.offsetWidth;
+  const height = container.offsetHeight;
+  const centerX = width / 2;
+  const centerY = height / 2;
+  
+  // Clear existing content
+  container.innerHTML = '';
+  
+  const nodes = [
+    { label: 'Underage&Overserved', x: 0, y: 0 },
+    { label: 'SEO', x: 0.4, y: -0.4 },
+    { label: 'Domains', x: 0.8, y: -0.4 },
+    { label: 'manhattanparty\nphotographer.com', x: 1.2, y: -0.5 },
+    { label: 'brooklynparty\nphotographer.com', x: 1.2, y: -0.3 },
+    { label: 'brooklynevent\nphotography.com', x: 1.2, y: 0.3 },
+    { label: 'nycevent\nplanner.xyz', x: 1.2, y: 0.5 },
+    { label: 'Photography', x: 0.4, y: 0.4 },
+    { label: 'branded U&O\npolaroids', x: 0.8, y: 0.5 },
+    { label: 'Events', x: -0.4, y: 0 },
+    { label: 'Partnerships', x: -0.8, y: 0 },
+    { label: 'freelancers union', x: -1.2, y: -0.4 },
+    { label: 'telos.haus', x: -1.2, y: 0 },
+    { label: 'fractal community', x: -1.2, y: 0.4 },
+    { label: 'TaskRabbit', x: 0, y: 0.6 },
+    { label: 'Merch', x: -0.4, y: -0.5 },
+    { label: 'magnets', x: -0.8, y: -0.6 },
+    { label: 'totes', x: -0.4, y: -0.6 },
+    { label: 'stickers', x: 0, y: -0.6 },
+    { label: 'Creatives on Fire', x: -0.8, y: -0.4 },
+    { label: 'timeline event\nplanning tool', x: 0.4, y: -0.6 },
+    { label: 'monetization', x: 0.8, y: -0.6 },
+    { label: 'Staffing', x: -0.2, y: 0.4 },
+    { label: 'Bartending', x: -0.4, y: 0.5 },
+    { label: 'Production', x: -0.6, y: 0.4 },
+    { label: 'Floral', x: -0.8, y: 0.5 },
+    { label: 'Consulting', x: -1.0, y: 0.4 },
+  ];
+  
+  const connections = [
+    [0, 1], [0, 7], [0, 9], [0, 10], [0, 14], [0, 15], [0, 19],
+    [1, 2], [2, 3], [2, 4], [2, 5], [2, 6],
+    [7, 8], [7, 9],
+    [9, 10], [10, 11], [10, 12], [10, 13],
+    [15, 16], [15, 17], [15, 18],
+    [0, 20], [20, 21], [20, 1],
+    [14, 9], [14, 7],
+    [8, 15], [8, 9],
+    [15, 9],
+    [19, 9],
+    [19, 10],
+    [0, 22], [22, 9],
+    [0, 23], [23, 9],
+    [0, 24], [24, 9],
+    [0, 25], [25, 9],
+    [0, 26], [26, 9],
+    [3, 7], [4, 7], [5, 7],
+    [6, 9],
+  ];
+  
+  const scaleFactor = 0.45; // Increase this value to add more space between items
+  
+  nodes.forEach((node, index) => {
+    const nodeElement = document.createElement('div');
+    nodeElement.className = 'mind-map-node';
+    nodeElement.style.left = `${centerX + node.x * width * scaleFactor}px`;
+    nodeElement.style.top = `${centerY + node.y * height * scaleFactor}px`;
+    nodeElement.innerHTML = node.label.replace('\n', '<br>');
+    container.appendChild(nodeElement);
+  });
+  
+  connections.forEach(([fromIndex, toIndex], index) => {
+    const fromNode = nodes[fromIndex];
+    const toNode = nodes[toIndex];
+    const line = document.createElement('div');
+    line.className = 'mind-map-line';
+    const fromX = centerX + fromNode.x * width * scaleFactor;
+    const fromY = centerY + fromNode.y * height * scaleFactor;
+    const toX = centerX + toNode.x * width * scaleFactor;
+    const toY = centerY + toNode.y * height * scaleFactor;
+    const length = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
+    line.style.width = `${length}px`;
+    line.style.left = `${fromX}px`;
+    line.style.top = `${fromY}px`;
+    const angle = Math.atan2(toY - fromY, toX - fromX) * (180 / Math.PI);
+    line.style.transform = `rotate(${angle}deg)`;
+    
+    line.style.animationDelay = `${index * 0.1}s`;
+    
+    container.appendChild(line);
+  });
 }
 
 // Touch support functions
