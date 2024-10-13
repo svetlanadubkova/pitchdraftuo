@@ -6,6 +6,7 @@
 <title>underage & overserved - polished yet playful hospitality</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <style>
 :root {
   --bg-color: #1a1a1a;
@@ -274,6 +275,86 @@ ul.sub-text {
   color: var(--text-color);
 }
 
+/* New styles for the target customer mind map */
+.target-customer-mind-map {
+  width: 100%;
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.target-customer-node text {
+  font-size: 22px;
+  fill: #e6a64c;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  font-style: italic;
+}
+
+.target-customer-link {
+  fill: none;
+  stroke: #e6a64c;
+  stroke-width: 1.5px;
+  opacity: 0.4;
+  animation: pulse 2s infinite;
+}
+
+.pain-points {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  background-color: rgba(26, 26, 26, 0.8);
+  border: 1px solid #e6a64c;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.pain-points h3 {
+  color: #ffffff;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.pain-points p {
+  font-size: 18px;
+  margin: 10px 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.solution {
+  color: #ffffff;
+}
+
+/* New styles for the PowerUp Award breakdown slide */
+.powerup-award {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.powerup-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.powerup-amount {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.strategic-note {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: rgba(230, 166, 76, 0.1);
+  border-left: 4px solid var(--accent-color);
+  font-style: italic;
+}
+
 @media (max-width: 768px) {
   .slide {
     padding: 20px 5%;
@@ -344,6 +425,40 @@ ul.sub-text {
   .mind-map-node {
     font-size: 2.5vw;
   }
+
+  .target-customer-node text {
+    font-size: 3vw;
+  }
+
+  .pain-points {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .pain-points h3 {
+    font-size: 4vw;
+  }
+
+  .pain-points p {
+    font-size: 3vw;
+  }
+
+  .powerup-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .powerup-amount {
+    margin-top: 5px;
+  }
+
+  .strategic-note {
+    font-size: 3.5vw;
+  }
 }
 
 @media (max-width: 480px) {
@@ -385,6 +500,22 @@ ul.sub-text {
 
   .mind-map-node {
     font-size: 3vw;
+  }
+
+  .target-customer-node text {
+    font-size: 3.5vw;
+  }
+
+  .pain-points h3 {
+    font-size: 5vw;
+  }
+
+  .pain-points p {
+    font-size: 4vw;
+  }
+
+  .strategic-note {
+    font-size: 4vw;
   }
 }
 </style>
@@ -561,6 +692,57 @@ ul.sub-text {
   </div>
 </div>
 
+<!-- New Target Customer Mind Map slide -->
+<div class="slide">
+  <div class="content">
+    <p class="main-text">target customer mind map</p>
+    <svg id="target-customer-mind-map" class="target-customer-mind-map"></svg>
+    <div class="pain-points">
+      <h3>pain points & solutions</h3>
+    </div>
+  </div>
+</div>
+
+<!-- New PowerUp Award breakdown slide -->
+<div class="slide">
+  <div class="content">
+    <p class="main-text">how we will utilize the $20,000 powerup award</p>
+    <div class="powerup-award">
+      <div class="powerup-item">
+        <span>photography & event equipment:</span>
+        <span class="powerup-amount">$11,000</span>
+      </div>
+      <div class="powerup-item">
+        <span>insurance fees (one-time):</span>
+        <span class="powerup-amount">$1,200</span>
+      </div>
+      <div class="powerup-item">
+        <span>licenses and permit fees:</span>
+        <span class="powerup-amount">$1,000</span>
+      </div>
+      <div class="powerup-item">
+        <span>beginning product inventory:</span>
+        <span class="powerup-amount">$1,500</span>
+      </div>
+      <div class="powerup-item">
+        <span>advertising (start-up only):</span>
+        <span class="powerup-amount">$1,500</span>
+      </div>
+      <div class="powerup-item">
+        <span>professional fees (contractor, lawyer, etc.):</span>
+        <span class="powerup-amount">$1,500</span>
+      </div>
+      <div class="powerup-item">
+        <span>unanticipated costs (10% of total):</span>
+        <span class="powerup-amount">$2,300</span>
+      </div>
+    </div>
+    <div class="strategic-note">
+      <p>Photography is a strategic marketing expense. I will leverage my photography business to attract clients for underage & overserved, creating a synergistic business model.</p>
+    </div>
+  </div>
+</div>
+
 <div class="slide">
   <div class="content">
     <p class="main-text">creating <span style="color: var(--accent-color);">"fourth spaces"</span></p>
@@ -691,6 +873,9 @@ function showSlide(index) {
   }
   if (slides[currentSlide].querySelector('#marketersBeliefChart')) {
     createMarketersBeliefChart();
+  }
+  if (slides[currentSlide].querySelector('#target-customer-mind-map')) {
+    createTargetCustomerMindMap();
   }
 }
 
@@ -952,6 +1137,117 @@ function createStrategyMap() {
     
     container.appendChild(line);
   });
+}
+
+function createTargetCustomerMindMap() {
+  const width = 1000;  // Increased from 800
+  const height = 700;  // Increased from 600
+
+  const svg = d3.select("#target-customer-mind-map")
+      .attr("width", width)
+      .attr("height", height);
+
+  const data = {
+    name: "target customer",
+    children: [
+      {
+        name: "founders",
+        children: [
+          { name: "technical", children: [
+            { name: "b2b" },
+            { name: "b2c" },
+            { name: "venture-backed" },
+            { name: "not venture-backed" }
+          ]},
+          { name: "non-technical", children: [
+            { name: "b2b" },
+            { name: "b2c" },
+            { name: "venture-backed" },
+            { name: "not venture-backed" }
+          ]}
+        ]
+      },
+      {
+        name: "marketers",
+        children: [
+          { name: "event leads" },
+          { name: "marketing managers" },
+          { name: "marketing directors" },
+          { name: "chief marketing officers" }
+        ]
+      },
+      {
+        name: "executive assistants",
+        children: [
+          { name: "admin focused" },
+          { name: "leadership support focused" }
+        ]
+      },
+      { name: "chief of staffs" }
+    ]
+  };
+
+  const treeLayout = d3.tree().size([height - 100, width - 400]);  // Adjusted size
+  const root = d3.hierarchy(data);
+
+  treeLayout.separation((a, b) => {
+    if (a.parent === b.parent) {
+      return 1.5;  // Increased from 1.2 for more horizontal space
+    } else {
+      return 2.5;  // Increased from 2 for more vertical space
+    }
+  });
+
+  treeLayout(root);
+
+  // Adjust node positions
+  root.each(d => {
+    d.y = d.depth * 200;  // Increase horizontal spacing
+  });
+
+  const link = svg.selectAll(".target-customer-link")
+    .data(root.links())
+    .enter().append("path")
+    .attr("class", "target-customer-link")
+    .attr("d", d3.linkHorizontal()
+      .x(d => d.y)
+      .y(d => d.x));
+
+  const node = svg.selectAll(".target-customer-node")
+    .data(root.descendants())
+    .enter().append("g")
+    .attr("class", "target-customer-node")
+    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  node.append("text")
+    .attr("dy", ".31em")
+    .attr("x", d => d.children ? -8 : 8)
+    .attr("text-anchor", d => d.children ? "end" : "start")
+    .text(d => d.data.name)
+    .style("font-size", "16px");  // Increased font size
+
+  // Add pain points
+  const painPoints = [
+    { pain: "overwhelming logistics", solution: "seamless end-to-end event management" },
+    { pain: "lack of creativity", solution: "unique, tailored experiences that captivate" },
+    { pain: "inconsistent quality", solution: "vetted, top-tier staff and vendors" },
+    { pain: "budget constraints", solution: "smart resource allocation for maximum impact" },
+    { pain: "time-consuming planning", solution: "efficient processes that save valuable time" },
+    { pain: "unmemorable events", solution: "thoughtful touches that leave lasting impressions" }
+  ];
+
+  const painPointsContainer = d3.select(".pain-points");
+  painPoints.forEach((point, index) => {
+    painPointsContainer.append("p")
+      .html(`<strong>pain:</strong> ${point.pain}<br><span class="solution"><strong>solution:</strong> ${point.solution}</span>`)
+      .style("transition-delay", `${index * 0.2}s`);
+  });
+
+  // Animate text fade-in
+  setTimeout(() => {
+    svg.selectAll("text").style("opacity", 1);
+    d3.selectAll(".pain-points p").style("opacity", 1);
+  }, 500);
 }
 
 // Touch support functions
