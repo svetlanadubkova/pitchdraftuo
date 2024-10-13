@@ -464,7 +464,116 @@ ul.sub-text {
   }
 }
 
-@media (max-width: 480px) {
+.award-utilization {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.main-text {
+  font-size: 3.5vw;
+  margin-bottom: 20px;
+}
+
+.award-content {
+  display: flex;
+  flex: 1;
+}
+
+.powerup-award {
+  flex: 0 0 60%;
+  font-size: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.powerup-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.powerup-amount {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+.image-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.float-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.photo-booth {
+  grid-column: 1 / 3;
+  grid-row: 1 / 3;
+}
+
+.strategic-note {
+  font-size: 1.8vw;
+  background-color: rgba(230, 166, 76, 0.1);
+  padding: 15px;
+  border-left: 4px solid var(--accent-color);
+  margin-top: 20px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  .main-text {
+    font-size: 6vw;
+  }
+
+  .powerup-award {
+    font-size: 3vw;
+    flex: 0 0 100%;
+  }
+
+  .award-content {
+    flex-direction: column;
+  }
+
+  .image-grid {
+    margin-left: 0;
+    margin-top: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .photo-booth {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .strategic-note {
+    font-size: 3vw;
+  }
+
+@media (max-width: 768px) {
   .logo {
     font-size: 10vw;
   }
@@ -708,36 +817,45 @@ ul.sub-text {
 
 <!-- New PowerUp Award breakdown slide -->
 <div class="slide">
-  <div class="content">
-    <p class="main-text">utilization of $20,000 powerup award</p>
-    <div class="powerup-award">
-      <div class="powerup-item">
-        <span>photography & event equipment:</span>
-        <span class="powerup-amount">$11,000</span>
+  <div class="content award-utilization">
+    <h2 class="main-text">utilization of $20,000 powerup award</h2>
+    <div class="award-content">
+      <div class="powerup-award">
+        <div class="powerup-item">
+          <span>photography & event equipment:</span>
+          <span class="powerup-amount">$11,000</span>
+        </div>
+        <div class="powerup-item">
+          <span>insurance fees (one-time):</span>
+          <span class="powerup-amount">$1,200</span>
+        </div>
+        <div class="powerup-item">
+          <span>licenses and permit fees:</span>
+          <span class="powerup-amount">$1,000</span>
+        </div>
+        <div class="powerup-item">
+          <span>beginning merch inventory:</span>
+          <span class="powerup-amount">$1,500</span>
+        </div>
+        <div class="powerup-item">
+          <span>advertising (bark, the bash, taskrabbit, google ads):</span>
+          <span class="powerup-amount">$1,500</span>
+        </div>
+        <div class="powerup-item">
+          <span>professional fees (contractor, lawyer, etc.):</span>
+          <span class="powerup-amount">$1,500</span>
+        </div>
+        <div class="powerup-item">
+          <span>unanticipated costs (10% of total):</span>
+          <span class="powerup-amount">$2,300</span>
+        </div>
       </div>
-      <div class="powerup-item">
-        <span>insurance fees (one-time):</span>
-        <span class="powerup-amount">$1,200</span>
-      </div>
-      <div class="powerup-item">
-        <span>licenses and permit fees:</span>
-        <span class="powerup-amount">$1,000</span>
-      </div>
-      <div class="powerup-item">
-        <span>beginning merch inventory:</span>
-        <span class="powerup-amount">$1,500</span>
-      </div>
-      <div class="powerup-item">
-        <span>advertising (bark, the bash, taskrabbit, google ads):</span>
-        <span class="powerup-amount">$1,500</span>
-      </div>
-      <div class="powerup-item">
-        <span>professional fees (contractor, lawyer, etc.):</span>
-        <span class="powerup-amount">$1,500</span>
-      </div>
-      <div class="powerup-item">
-        <span>unanticipated costs (10% of total):</span>
-        <span class="powerup-amount">$2,300</span>
+      <div class="image-grid">
+        <div class="grid-item"><img src="https://i.imgur.com/mDFWiJ2.gif" alt="360 Photo Booth" class="float-image photo-booth"></div>
+        <div class="grid-item"><img src="https://i.imgur.com/lCOrCSZ.png" alt="Camera" class="float-image camera"></div>
+        <div class="grid-item"><img src="https://i.imgur.com/VuD3h2y.png" alt="TaskRabbit Logo" class="float-image taskrabbit"></div>
+        <div class="grid-item"><img src="https://i.imgur.com/weA6WkU.png" alt="The Bash Logo" class="float-image bash"></div>
+        <div class="grid-item"><img src="https://i.imgur.com/zPlreL4.png" alt="Bark Logo" class="float-image bark"></div>
       </div>
     </div>
     <div class="strategic-note">
@@ -863,6 +981,7 @@ function showSlide(index) {
     setTimeout(() => {
       logoUnderline.classList.add('visible');
     }, 500);
+    
   }
   
   if (slides[currentSlide].querySelector('#attendanceChart')) {
@@ -880,6 +999,20 @@ function showSlide(index) {
   if (slides[currentSlide].querySelector('#target-customer-mind-map')) {
     createTargetCustomerMindMap();
   }
+  
+  if (slides[currentSlide].querySelector('.image-grid')) {
+    animateFloatingImages();
+  }
+}
+
+function animateFloatingImages() {
+  const images = document.querySelectorAll('.float-image');
+  images.forEach((img, index) => {
+    setTimeout(() => {
+      img.style.opacity = '1';
+      img.style.animation = `float ${5 + index}s ease-in-out infinite`;
+    }, index * 300);
+  });
 }
 
 function nextSlide() {
